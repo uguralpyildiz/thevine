@@ -91,7 +91,59 @@
 </head>
 
 <body class="index-page">
+<div class="js-container containeran"></div>
+  <script>
+    const Confettiful = function (el) {
+        this.el = el;
+        this.containerEl = null;
 
+        this.confettiFrequency = 3;
+        this.confettiColors = ['#fce18a', '#ff726d', '#b48def', '#f4306d'];
+        this.confettiAnimations = ['slow', 'medium', 'fast'];
+
+        this._setupElements();
+        this._renderConfetti();
+      };
+
+      Confettiful.prototype._setupElements = function () {
+        const containerEl = document.createElement('div');
+        const elPosition = this.el.style.position;
+
+        if (elPosition !== 'relative' || elPosition !== 'absolute') {
+          this.el.style.position = 'relative';
+        }
+
+        containerEl.classList.add('confetti-container');
+
+        this.el.appendChild(containerEl);
+
+        this.containerEl = containerEl;
+      };
+
+      Confettiful.prototype._renderConfetti = function () {
+        this.confettiInterval = setInterval(() => {
+          const confettiEl = document.createElement('div');
+          const confettiSize = Math.floor(Math.random() * 3) + 7 + 'px';
+          const confettiBackground = this.confettiColors[Math.floor(Math.random() * this.confettiColors.length)];
+          const confettiLeft = Math.floor(Math.random() * this.el.offsetWidth) + 'px';
+          const confettiAnimation = this.confettiAnimations[Math.floor(Math.random() * this.confettiAnimations.length)];
+
+          confettiEl.classList.add('confetti', 'confetti--animation-' + confettiAnimation);
+          confettiEl.style.left = confettiLeft;
+          confettiEl.style.width = confettiSize;
+          confettiEl.style.height = confettiSize;
+          confettiEl.style.backgroundColor = confettiBackground;
+
+          confettiEl.removeTimeout = setTimeout(function () {
+            confettiEl.parentNode.removeChild(confettiEl);
+          }, 3000);
+
+          this.containerEl.appendChild(confettiEl);
+        }, 25);
+      };
+
+      window.confettiful = new Confettiful(document.querySelector('.js-container'));
+  </script>
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
@@ -156,7 +208,15 @@
 
           <div class="col-lg-6">
             <div class="hero-image" data-aos="zoom-out" data-aos-delay="300">
-              <img style="border-radius: 11px;" src="img/evlilik-teklifi/1 (1).jpg" alt="Hero Image" class="img-fluid">
+              <div style="border-radius: 11px;" class="img-fluid">
+                <iframe style="border-radius: 11px;" width="100%" height="500"
+                  src="https://www.youtube.com/embed/38xHz9W_zIA?autoplay=1&mute=1" title="Eskişehir nişan organizasyonu"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                </iframe>
+
+              </div>
 
               <div class="customers-badge">
                 <div class="customer-avatars">
@@ -165,9 +225,9 @@
                   <img src="img/dogum-gunu/1 (8).jpg" alt="Customer 3" class="avatar">
                   <img src="img/dogum-gunu/1 (7).jpg" alt="Customer 4" class="avatar">
                   <img src="img/dogum-gunu/1 (5).jpg" alt="Customer 5" class="avatar">
-                  <span class="avatar more">500+</span>
+                  <span class="avatar more">3000+</span>
                 </div>
-                <p class="mb-0 mt-2">500'den Fazla Etkinlik Yönettik</p>
+                <p class="mb-0 mt-2">3000'den Fazla Etkinlik Yönettik</p>
               </div>
             </div>
           </div>
@@ -180,7 +240,7 @@
                 <i class="bi bi-trophy"></i>
               </div>
               <div class="stat-content">
-                <h4>50+<br> Ödül Kazandık</h4>
+                <h4><span style="color: #cc3225; font-weight: 800;">5</span><br> Ödül Kazandık</h4>
                 <p class="mb-0">Öne çıkan etkinliklerimizle sektördeki başarımızı kanıtladık.</p>
               </div>
             </div>
@@ -191,7 +251,7 @@
                 <i class="bi bi-briefcase"></i>
               </div>
               <div class="stat-content">
-                <h4>500+<br> Etkinlik Yönettik</h4>
+                <h4><span style="color: #cc3225; font-weight: 800;">3000+</span><br> Etkinlik Yönettik</h4>
                 <p class="mb-0">Binlerce mutlu müşteri ve başarılı organizasyonlar geride bıraktık.</p>
               </div>
             </div>
@@ -202,7 +262,7 @@
                 <i class="bi bi-graph-up"></i>
               </div>
               <div class="stat-content">
-                <h4>1000+<br> Mutlu Misafir</h4>
+                <h4><span style="color: #cc3225; font-weight: 800;">10000+</span><br> Mutlu Misafir</h4>
                 <p class="mb-0">Her etkinliğimizde, misafirlerimize unutulmaz deneyimler sunduk.</p>
               </div>
             </div>
@@ -213,7 +273,7 @@
                 <i class="bi bi-award"></i>
               </div>
               <div class="stat-content">
-                <h4>100+<br> Övgü Aldık</h4>
+                <h4><span style="color: #cc3225; font-weight: 800;">1000+</span><br> Övgü Aldık</h4>
                 <p class="mb-0">Etkinliklerimiz, sektörde takdir edilen başarılarla taçlandı.</p>
               </div>
             </div>
